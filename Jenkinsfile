@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
        // withAWS(credentials: 'aws-creds', region: 'us-west-1')
-        AWS_CREDENTIALS = 'aws-creds'
+        AWS_CREDENTIALS = credentials('aws-creds')
         AWS_DEFAULT_REGION = 'us-west-1'
     }
     stages{
