@@ -21,7 +21,7 @@ pipeline {
         stage('Initializing Terraform'){
             steps{
                 script{
-                    dir('terraform'){
+                    dir('eks-cluster'){
                          withAWS(credentials: 'aws-creds', region: 'us-west-1') {
                 sh 'terraform init'
                 }
@@ -32,7 +32,7 @@ pipeline {
         stage('Validating Terraform'){
             steps{
                 script{
-                    dir('terraform'){
+                    dir('eks-cluster'){
                          withAWS(credentials: 'aws-creds', region: 'us-west-1') {
                 sh 'terraform validate'
                 }
@@ -43,7 +43,7 @@ pipeline {
         stage('Previewing the infrastructure'){
             steps{
                 script{
-                    dir('terraform'){
+                    dir('eks-cluster'){
                          withAWS(credentials: 'aws-creds', region: 'us-west-1') {
                 sh 'terraform plan'
                 }
@@ -55,7 +55,7 @@ pipeline {
         stage('Create/Destroy an EKS cluster'){
             steps{
                 script{
-                    dir('terraform'){
+                    dir('eks-cluster'){
                         withAWS(credentials: 'aws-creds', region: 'us-west-1') {
                 sh 'terraform $action --auto-approve'
                 }
