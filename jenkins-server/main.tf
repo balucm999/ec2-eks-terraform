@@ -57,9 +57,9 @@ module "sg" {
 #ec2
 module "ec2_instance" {
   source = "terraform-aws-modules/ec2-instance/aws"
+  name = "jenkins-server-ubuntu"
 
-  name = "jenkins-ec2"
-
+  ami                         = data.aws_ami.ubuntu22.id  
   instance_type               = var.instance_type
   key_name                    = "ec2-keypair"
   monitoring                  = true
