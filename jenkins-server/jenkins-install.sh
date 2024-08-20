@@ -18,6 +18,10 @@ sudo systemctl start jenkins
 # then install git
 sudo yum install git -y
 
+# Run Docker Container of Sonarqube
+#!/bin/bash
+docker run -d  --name sonar -p 9000:9000 sonarqube:lts-community
+
 # Install AWS CLI
 sudo yum install -y unzip
 sudo curl "https://d1uj6qtbmh3dt5.cloudfront.net/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
@@ -28,6 +32,10 @@ sudo ./aws/install
 sudo amazon-linux-extras install -y docker
 sudo systemctl start docker
 sudo systemctl enable docker
+sudo usermod -a -G docker ec2-user
+sudo usermod -aG docker jenkins
+
+
 
 #then install terraform
 sudo yum install -y yum-utils
@@ -38,4 +46,10 @@ sudo yum -y install terraform
 sudo curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.23.6/bin/linux/amd64/kubectl
 sudo chmod +x ./kubectl
 sudo mkdir -p $HOME/bin && sudo cp ./kubectl $HOME/bin/kubectl && export PATH=$PATH:$HOME/bin
+
+# Installing yq
+#! /bin/bash
+sudo curl -L https://github.com/mikefarah/yq/releases/download/v4.44.3/yq_linux_amd64 -o /usr/local/bin/yq
+sudo chmod +x /usr/local/bin/yq
+
 
