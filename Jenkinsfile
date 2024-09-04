@@ -1,9 +1,9 @@
 pipeline {
     agent any
     environment {
-       // withAWS(credentials: 'aws-creds', region: 'us-west-1')
+       // withAWS(credentials: 'aws-creds', region: 'us-east-1')
         AWS_CREDENTIALS = credentials('aws-creds')
-        AWS_DEFAULT_REGION = 'us-west-1'
+        AWS_DEFAULT_REGION = 'us-east-1'
     }
     stages{
         stage('Preparing') {
@@ -22,7 +22,7 @@ pipeline {
             steps{
                 script{
                     dir('eks-cluster'){
-                         withAWS(credentials: 'aws-creds', region: 'us-west-1') {
+                         withAWS(credentials: 'aws-creds', region: 'us-east-1') {
                 sh 'terraform init'
                 }
                     }
@@ -33,7 +33,7 @@ pipeline {
             steps{
                 script{
                     dir('eks-cluster'){
-                         withAWS(credentials: 'aws-creds', region: 'us-west-1') {
+                         withAWS(credentials: 'aws-creds', region: 'us-east-1') {
                 sh 'terraform validate'
                 }
                     }
@@ -44,7 +44,7 @@ pipeline {
             steps{
                 script{
                     dir('eks-cluster'){
-                         withAWS(credentials: 'aws-creds', region: 'us-west-1') {
+                         withAWS(credentials: 'aws-creds', region: 'us-east-1') {
                 sh 'terraform plan'
                 }
                     }
@@ -56,7 +56,7 @@ pipeline {
             steps{
                 script{
                     dir('eks-cluster'){
-                        withAWS(credentials: 'aws-creds', region: 'us-west-1') {
+                        withAWS(credentials: 'aws-creds', region: 'us-east-1') {
                 sh 'terraform $action --auto-approve'
                 }
                     }
