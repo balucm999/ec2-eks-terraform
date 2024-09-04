@@ -10,7 +10,7 @@ iam permision(policies)
 5.amazonec2fullaccess
 6.administrator access
 note:top4 permisiions are mandatory
-note:after creating eks ckuster we need to give access entry to iam principal manually so goto eks cluster and click on create access entry(error will be there like iam principan not access to see reources on cluster)and go back to eks cluster and compute and refresh it then we can see nodes
+note:after creating eks ckuster we need to give access entry to iam principal manually so goto eks cluster and click on create access entry and select policy that is eksclusteradminpolicy(error will be there like iam principan not access to see reources on cluster)and go back to eks cluster and compute and refresh it then we can see nodes
 
 
 even after u cannot see the nodes in compute area in eks cluster then change manage access to eks API
