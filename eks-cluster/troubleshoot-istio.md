@@ -1,0 +1,13 @@
+in main.tf i have added below
+
+The ‘node_security_group_additional_rules’ block is added to create Security Group ingress rules for the nodegroup.
+These rules are specifically for ports 15017 and 15012, allowing traffic from the EKS cluster.
+Its important to note that ‘source_cluster_security_group’ is set to true.
+
+Without the ingress rules for ports 15017 and 15012, the installation of Istio in the EKS cluster may result in multiple errors. Some of these errors are shown below.
+
+FAILED CALLING WEBHOOK (while creating pod in namespaces where istio=injectced)
+
+Error from server (ServiceUnavailable): error trying to reach service: dial tcp 172.44.30.55:15017: connect: connection timed out
+
+FAILED CALLING WEBHOOK "object.sidecar-injector.istio.io": failed to call webhook: Post "https://istiod.istio-system.svc:443/inject?timeout=10s": context deadline exceeded
