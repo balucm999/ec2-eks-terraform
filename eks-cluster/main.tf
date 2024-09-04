@@ -90,7 +90,7 @@ module "eks" {
 
       policy_associations = {
         example = {
-          policy_arn = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
+          policy_arn = "arn:aws:iam::aws:policy/AmazonEKSClusterAdminPolicy"
           access_scope = {
             namespaces = ["default"]
             type       = "namespace"
