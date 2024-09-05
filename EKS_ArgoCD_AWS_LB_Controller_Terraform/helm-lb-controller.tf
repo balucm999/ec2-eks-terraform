@@ -1,4 +1,5 @@
 resource "helm_release" "aws_load_balancer_controller" {
+  provider         = kubernetes
   name             = "aws-load-balancer-controller"
   repository       = "https://aws.github.io/eks-charts"
   chart            = "aws-load-balancer-controller"
