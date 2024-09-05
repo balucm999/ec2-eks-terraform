@@ -17,7 +17,7 @@ resource "helm_release" "aws_load_balancer_controller" {
 
   set {
     name  = "serviceAccount.name"
-    value = "aws-load-balancer-controller"
+    value = kubernetes_service_account.lb-controller.metadata[0].name
   }
 
   depends_on = [
