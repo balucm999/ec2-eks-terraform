@@ -88,3 +88,26 @@ module "eks" {
     Terraform   = "true"
   }
 }
+# Output from the EKS module for node group role ARN
+output "node_groups" {
+  value = {
+    "nodes" = {
+      iam_role_name = aws_iam_role.node_group_role.name
+      iam_role_arn  = aws_iam_role.node_group_role.arn
+    }
+  }
+}
+
+
+# Attach the policy to the node group role
+resource "aws_iam_role_policy_attachment" "node_group_ebs_csi_policy" {
+  role       = module.eks.eks_managed_node_groups["nodes"].iam_role_name
+  policy_arn  = "arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy"
+}
+# Create the EBS CSI driver add-on
+resource "aws_eks_addon" "ebs_csi_driver" {
+  cluster_name  = module.eks.cluster_name
+  addon_name    = "ebs-csi-driver"
+  addon_version = "v1.13.0-eksbuild.1"  # Replace with a valid version if needed
+}
+
