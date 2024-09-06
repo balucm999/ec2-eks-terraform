@@ -70,7 +70,7 @@ resource "aws_iam_role_policy_attachment" "lb-controller-policy-attachment" {
 resource "kubernetes_service_account" "lb-controller" {
   metadata {
     name      = "aws-load-balancer-controller"
-    namespace = "aws-load-balancer-controller"
+    namespace = "kube-system"
     annotations = {
       "eks.amazonaws.com/role-arn" = aws_iam_role.lb-controller-role.arn
     }
