@@ -88,13 +88,3 @@ module "eks" {
     Terraform   = "true"
   }
 }
-# Output from the EKS module for node group role ARN
-output "node_group_role_arn" {
-  value = module.eks.eks_managed_node_groups["nodes"].iam_role_arn
-}
-
-# Attach the policy to the node group role
-resource "aws_iam_role_policy_attachment" "node_group_ebs_csi_policy" {
-  role       = module.eks.eks_managed_node_groups["nodes"].iam_role_name
-  policy_arn  = "arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy"
-}
