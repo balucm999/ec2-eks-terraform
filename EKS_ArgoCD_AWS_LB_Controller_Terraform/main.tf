@@ -104,10 +104,5 @@ resource "aws_iam_role_policy_attachment" "node_group_ebs_csi_policy" {
   role       = module.eks.eks_managed_node_groups["nodes"].iam_role_name
   policy_arn  = "arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy"
 }
-# Create the EBS CSI driver add-on
-resource "aws_eks_addon" "ebs_csi_driver" {
-  cluster_name  = module.eks.cluster_name
-  addon_name    = "ebs-csi-driver"
-  addon_version = "v1.13.0-eksbuild.1"  # Replace with a valid version if needed
-}
+
 
