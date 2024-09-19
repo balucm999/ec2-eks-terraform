@@ -23,6 +23,6 @@ istioctl install --set profile=demo -y
 
 # Deploy Kiali dashboard addon
 kubectl apply -f samples/addons/kiali.yaml
-kubectl apply -f samples/addons/prometheus.yaml
+#kubectl apply -f samples/addons/prometheus.yaml
 # Expose Kiali service as LoadBalancer
-kubectl patch svc kiali -n istio-system -p '{"spec": {"type": "LoadBalancer"}}'
+#kubectl patch svc kiali -n istio-system -p '{"spec": {"type": "LoadBalancer"}}'
