@@ -7,7 +7,7 @@ resource "helm_release" "argocd" {
   create_namespace = true
   set {
     name  = "server.service.type"
-    value = "LoadBalancer"
+    value = "ClusterIP"
   }
 
   set {
