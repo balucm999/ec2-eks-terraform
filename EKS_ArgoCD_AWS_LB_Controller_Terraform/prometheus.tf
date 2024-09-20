@@ -25,7 +25,7 @@ resource "helm_release" "prometheus-helm" {
 
   set {
     name  = "prometheus.service.type"
-    value = "ClusterIP"
+    value = "LoadBalancer"
   }
 
   depends_on = [helm_release.argocd]
